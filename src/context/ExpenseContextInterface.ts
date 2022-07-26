@@ -1,7 +1,6 @@
 export interface ExpenseLogsValues {
-  value: string,
-  label: string,
-  _id: string,
+  data: Array<any>,
+  createModalOpen: boolean,
 }
 
 export interface ExpenseLogs {

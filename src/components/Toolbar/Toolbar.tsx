@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { ExpenseLogsContext } from '../../context/ExpenseContext'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,7 +13,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
+import AddIcon from '@mui/icons-material/Add';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 
@@ -57,6 +58,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const ToolbarExpenses = () => {
+  const { expenseLogs, updateContextValue } = useContext(ExpenseLogsContext);
+
+  const {
+    data,
+    createModalOpen,
+  } = expenseLogs;
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -122,9 +130,7 @@ export const ToolbarExpenses = () => {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
+          <AddIcon />
         </IconButton>
         <p>Messages</p>
       </MenuItem>
@@ -187,19 +193,15 @@ export const ToolbarExpenses = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
             <IconButton
+              onClick={() => {
+                /* @ts-ignore */
+                updateContextValue('createModalOpen', true)
+              }}
               size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
+              aria-label="add expense"
+              color="inherit">
+              <AddIcon />
             </IconButton>
             <IconButton
               size="large"

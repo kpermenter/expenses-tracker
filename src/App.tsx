@@ -1,20 +1,31 @@
-import { ExpenseLogs, ExpenseLogsValues } from './context/ExpenseContextInterface';
+import { useContext } from 'react';
+import { ExpenseLogsContext } from './context/ExpenseContext'
 import { ExpenseLogsContextContainer } from './context/ExpenseContextContainer';
 import { ToolbarExpenses } from './components/Toolbar/Toolbar';
 import { ExpensesTable } from './components/Table/Table';
-import { ExpenseLogsContext, ExpenseLogsProvider } from './context/ExpenseContext';
-import { WithContextContainer } from './context/WithContextContainer';
-import { ContextContainer } from './context/ContextContainer';
+import { FormDialog } from './components/CreateExpense/CreateExpense';
 
 export const App = () => {
+  const { expenseLogs, updateContextValue } = useContext(ExpenseLogsContext);
+
+  const {
+    data,
+    createModalOpen,
+  } = expenseLogs;
+
   return (
-    // @ts-ignore
-    <ContextContainer>
     <ExpenseLogsContextContainer>
-      <ToolbarExpenses />
-      <ExpensesTable />
-      </ExpenseLogsContextContainer>
-    </ContextContainer>
+      {data && data.length ?
+        <>
+          {/* {createModalOpen &&
+            <FormDialog />
+          } */}
+          <FormDialog />
+          <ToolbarExpenses />
+          <ExpensesTable />
+        </>
+        : null}
+    </ExpenseLogsContextContainer>
   );
 }
 
