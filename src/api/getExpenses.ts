@@ -6,8 +6,14 @@ export const getExpenses = (url: string) => {
 };
 
 // create new expense
-export const createExpense = (url: string) => {
-  return fetch(url)
+// @ts-ignore
+export const createExpense = (url: string, body) => {
+  // const requestOptions = {
+  //   method: 'POST',
+  //   body,
+  //   redirect: 'follow'
+  // };
+  return fetch(url, body)
   .then((response) => response.json())
   .catch(error => console.log('error', error));
 };
