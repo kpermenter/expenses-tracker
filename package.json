@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://app.netlify.com/sites/expenses-tracker-tool/",
+  "homepage": "https://expenses-tracker-tool.netlify.app",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
