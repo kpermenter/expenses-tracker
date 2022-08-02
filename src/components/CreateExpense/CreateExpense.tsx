@@ -1,35 +1,45 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { ExpenseLogsContext } from '../../context/ExpenseContext'
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import { createExpense } from '../../api/getExpenses';
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle
+} from '@mui/material';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { createNewExpense } from '../../api/getExpenses';
 
 export const FormDialog = () => {
   const { expenseLogs, updateContextValue } = useContext(ExpenseLogsContext);
+  const [value, setValue] = useState<Date | null>(new Date('2014-08-18T21:11:54'));
 
   const {
     data,
     createModalOpen,
   } = expenseLogs;
-  
+
   const handleClose = () => {
     /* @ts-ignore */
     updateContextValue('createModalOpen', false);
   };
 
+  const handleDateChange = (newValue: Date | null) => {
+    setValue(newValue);
+  };
+
   const saveExpense = () => {
-    createExpense(
-      'https://77babbde-8694-4af6-aa88-5397c3cd6b61.mock.pstmn.io/post/expenses',
-      {
-        "expenseDate" : "10/01/2000",
-        "itemName" : "Milk",
-        "category": "Diary",
-        "itemAmount": 400
+    createNewExpense({
+      "_id": "5e85e35b8dbd303d54611274",
+      "expenseDate": "01/10/2010",
+      "itemName": "Soccer",
+      "category": "Sports",
+      "itemAmount": 200,
+      "isDeleted": false
     });
   }
 
@@ -38,6 +48,7 @@ export const FormDialog = () => {
       <Dialog open={createModalOpen} onClose={handleClose}>
         <DialogTitle>Create Expense</DialogTitle>
         <DialogContent>
+        <div style={{ marginBottom: 30 }}>
           <TextField
             autoFocus
             margin="dense"
@@ -46,22 +57,25 @@ export const FormDialog = () => {
             type="text"
             fullWidth
             variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Purchased Date"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
+            />
+            </div>
+          <div>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DesktopDatePicker
+              label="Purchased Date"
+              inputFormat="MM/dd/yyyy"
+              value={value}
+              onChange={handleDateChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            </LocalizationProvider>
+            </div>
           <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Amount"
-            type="text"
+            type="number"
             fullWidth
             variant="standard"
           />

@@ -15,16 +15,18 @@ export const App = () => {
 
   return (
     <ExpenseLogsContextContainer>
-      {data && data.length ?
+      {/* {data && data.length ?
         <>
-          {/* {createModalOpen &&
-            <FormDialog />
-          } */}
           <FormDialog />
           <ToolbarExpenses />
           <ExpensesTable />
         </>
-        : null}
+        : null} */}
+        <>
+          <FormDialog />
+          <ToolbarExpenses />
+          <ExpensesTable />
+        </>
     </ExpenseLogsContextContainer>
   );
 }

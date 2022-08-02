@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/sites/expenses-tracker-tool/static/js/main.03ad1d45.js",
-    "index.html": "/sites/expenses-tracker-tool/index.html",
-    "main.03ad1d45.js.map": "/sites/expenses-tracker-tool/static/js/main.03ad1d45.js.map"
+    "main.js": "/static/js/main.071a92ac.js",
+    "index.html": "/index.html",
+    "main.071a92ac.js.map": "/static/js/main.071a92ac.js.map"
   },
   "entrypoints": [
-    "static/js/main.03ad1d45.js"
+    "static/js/main.071a92ac.js"
   ]
 }

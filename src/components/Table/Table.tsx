@@ -1,12 +1,6 @@
 import { useContext } from 'react';
 import { ExpenseLogsContext } from '../../context/ExpenseContext'
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 export const ExpensesTable = () => {
   const { expenseLogs, updateContextValue } = useContext(ExpenseLogsContext);
@@ -30,12 +24,12 @@ export const ExpensesTable = () => {
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row._id}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}          
             >
-              <TableCell align="left">{row.itemName}</TableCell>
-              <TableCell align="left">{row.expenseDate}</TableCell>
-              <TableCell align="left">{row.itemAmount}</TableCell>
+              <TableCell align="left">{row.name}</TableCell>
+              <TableCell align="left">{row.purchased}</TableCell>
+              <TableCell align="left">{row.amount}</TableCell>
               <TableCell align="left">{row.category}</TableCell>
             </TableRow>
           ))}

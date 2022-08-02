@@ -1,19 +1,25 @@
 // get all expenses
-export const getExpenses = (url: string) => {
-  return fetch(url)
+export const getExpenses = () => {
+  return fetch('/expenses')
     .then((response) => response.json())
     .catch(error => console.log('error', error));
 };
 
-// create new expense
 // @ts-ignore
-export const createExpense = (url: string, body) => {
-  // const requestOptions = {
-  //   method: 'POST',
-  //   body,
-  //   redirect: 'follow'
-  // };
-  return fetch(url, body)
-  .then((response) => response.json())
-  .catch(error => console.log('error', error));
-};
+export const createNewExpense = (body) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "text/plain");
+
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body,
+    redirect: 'follow'
+  };
+
+  // @ts-ignore
+  fetch("/expenses", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}

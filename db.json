@@ -1,0 +1,9 @@
+{
+  "expenses": [
+    { "id": 1, "name": "Trader Joe's", "purchased": "01/01/2022", "amount": "100", "category": "food"}
+  ],
+  "comments": [
+    { "id": 1, "name": "Trader Joe's", "purchased": "01/01/2022", "amount": "100", "category": "food", "postId": 1 }
+  ],
+  "profile": { "name": "John Doe" }
+}

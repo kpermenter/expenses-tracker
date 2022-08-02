@@ -21,11 +21,13 @@ export const ExpenseLogsProvider = ({ children }: React.PropsWithChildren<props>
   useEffect(() => {
     const FetchExpenseLogs = async () => {
       // @ts-ignore
-      getExpenses("https://77babbde-8694-4af6-aa88-5397c3cd6b61.mock.pstmn.io/get/expenses").then((res) => {
+      getExpenses().then((res) => {
         if (res) {
+          console.log(res);
           setExpenseLogs((currentExpenseLogs) =>
-            ({ ...currentExpenseLogs, data: res.expenses }),
+            ({ ...currentExpenseLogs, data: res }),
           );
+          console.log(data)
         }
       });
     }
